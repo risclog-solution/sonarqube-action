@@ -18,6 +18,7 @@ RUN npm config set unsafe-perm true && \
 ENV NODE_PATH "/usr/lib/node_modules/"
 
 COPY entrypoint.sh /entrypoint.sh
+COPY pytest.xml /pytest.xml
 
 RUN chmod +x /entrypoint.sh
 
