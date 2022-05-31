@@ -33,5 +33,6 @@ else
     -Dsonar.host.url=${INPUT_HOST} \
     -Dsonar.projectBaseDir=${INPUT_PROJECTBASEDIR} \
     -Dsonar.login=${INPUT_LOGIN} \
-    -Dsonar.password=${SONAR_PASSWORD}
+    -Dsonar.password=${SONAR_PASSWORD} \
+    -Dsonar.python.coverage.reportPaths=pytest.xml
 fi
