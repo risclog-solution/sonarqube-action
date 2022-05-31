@@ -14,7 +14,7 @@ REPOSITORY_NAME=$(basename "${GITHUB_REPOSITORY}")
 
 [[ ! -z ${INPUT_PASSWORD} ]] && SONAR_PASSWORD="${INPUT_PASSWORD}" || SONAR_PASSWORD=""
 
-if [[ ! -f "${GITHUB_WORKSPACE}/pytest.xml" ]]; then
+if [[ ! -f "${GITHUB_WORKSPACE}/coverage.xml" ]]; then
     exit 1
 fi
 
@@ -32,12 +32,12 @@ if [[ ! -f "${GITHUB_WORKSPACE}/sonar-project.properties" ]]; then
     -Dsonar.password=${SONAR_PASSWORD} \
     -Dsonar.sources=. \
     -Dsonar.sourceEncoding=UTF-8 \
-    -Dsonar.python.coverage.reportPaths="${GITHUB_WORKSPACE}/pytest.xml"
+    -Dsonar.python.coverage.reportPaths="${GITHUB_WORKSPACE}/coverage.xml"
 else
   sonar-scanner \
     -Dsonar.host.url=${INPUT_HOST} \
     -Dsonar.projectBaseDir=${INPUT_PROJECTBASEDIR} \
     -Dsonar.login=${INPUT_LOGIN} \
     -Dsonar.password=${SONAR_PASSWORD} \
-    -Dsonar.python.coverage.reportPaths="${GITHUB_WORKSPACE}/pytest.xml"
+    -Dsonar.python.coverage.reportPaths="${GITHUB_WORKSPACE}/coverage.xml"
 fi
