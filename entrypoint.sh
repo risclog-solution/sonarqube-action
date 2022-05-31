@@ -32,7 +32,7 @@ if [[ ! -f "${GITHUB_WORKSPACE}/sonar-project.properties" ]]; then
     -Dsonar.password=${SONAR_PASSWORD} \
     -Dsonar.sources=./src/ \
     -Dsonar.sourceEncoding=UTF-8 \
-    -Dsonar.exclusions=**/*.js \
+    -Dsonar.exclusions=**/*.js,**/*.css \
     -Dsonar.python.coverage.reportPaths="${GITHUB_WORKSPACE}/coverage.xml"
 else
   sonar-scanner \
@@ -40,6 +40,6 @@ else
     -Dsonar.projectBaseDir=${INPUT_PROJECTBASEDIR} \
     -Dsonar.login=${INPUT_LOGIN} \
     -Dsonar.password=${SONAR_PASSWORD} \
-    -Dsonar.exclusions=**/*.js \
+    -Dsonar.exclusions=**/*.js,**/*.css \
     -Dsonar.python.coverage.reportPaths="${GITHUB_WORKSPACE}/coverage.xml"
 fi
