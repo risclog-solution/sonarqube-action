@@ -14,8 +14,13 @@ REPOSITORY_NAME=$(basename "${GITHUB_REPOSITORY}")
 
 [[ ! -z ${INPUT_PASSWORD} ]] && SONAR_PASSWORD="${INPUT_PASSWORD}" || SONAR_PASSWORD=""
 
-if [[ ! -f "${GITHUB_WORKSPACE}/coverage.xml" ]]; then
-    exit 1
+if [[ "${INPUT_PROJECTTYPE}" == "python" ]]; then
+    ARGS="-Dsonar.exclusions=**/*.js,**/*.css,**/*.scss,**/*.html,**/versions/** \
+    -Dsonar.python.coverage.reportPaths="${GITHUB_WORKSPACE}/coverage.xml""
+elif [[ "${INPUT_PROJECTTYPE}" == "javascript" ]]; then
+    ARGS="-Dsonar.javascript.lcov.reportPaths="${GITHUB_WORKSPACE}/coverage/lcov.info""
+else
+    exit 1;
 fi
 
 if [[ ! -f "${GITHUB_WORKSPACE}/sonar-project.properties" ]]; then
@@ -32,14 +37,12 @@ if [[ ! -f "${GITHUB_WORKSPACE}/sonar-project.properties" ]]; then
     -Dsonar.password=${SONAR_PASSWORD} \
     -Dsonar.sources=./src/ \
     -Dsonar.sourceEncoding=UTF-8 \
-    -Dsonar.exclusions=**/*.js,**/*.css,**/*.scss,**/*.html,**/versions/** \
-    -Dsonar.python.coverage.reportPaths="${GITHUB_WORKSPACE}/coverage.xml"
+    ${ARGS}
 else
   sonar-scanner \
     -Dsonar.host.url=${INPUT_HOST} \
     -Dsonar.projectBaseDir=${INPUT_PROJECTBASEDIR} \
     -Dsonar.login=${INPUT_LOGIN} \
     -Dsonar.password=${SONAR_PASSWORD} \
-    -Dsonar.exclusions=**/*.js,**/*.css,**/*.scss,**/*.html,**/versions/** \
-    -Dsonar.python.coverage.reportPaths="${GITHUB_WORKSPACE}/coverage.xml"
+    ${ARGS}
 fi

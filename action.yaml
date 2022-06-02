@@ -33,3 +33,7 @@ inputs:
   password:
     description: "Password that goes with the sonar.login username. This should be left blank if an authentication token is being used."
     required: false
+  projectType:
+    description: "Type of the project, currently python and javascript are supported"
+    required: false
+    default: "python"
