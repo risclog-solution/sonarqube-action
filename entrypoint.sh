@@ -18,7 +18,7 @@ if [[ "${INPUT_PROJECTTYPE}" == "python" ]]; then
     ARGS="-Dsonar.exclusions=**/*.js,**/*.css,**/*.scss,**/*.html,**/versions/** \
     -Dsonar.python.coverage.reportPaths="${GITHUB_WORKSPACE}/coverage.xml""
 elif [[ "${INPUT_PROJECTTYPE}" == "javascript" ]]; then
-    ARGS="-Dsonar.javascript.lcov.reportPaths="${GITHUB_WORKSPACE}/coverage/lcov.info""
+    ARGS="-Dsonar.javascript.lcov.reportPaths="${GITHUB_WORKSPACE}/lcov.info""
 else
     exit 1;
 fi
