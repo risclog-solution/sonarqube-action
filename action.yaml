@@ -37,3 +37,11 @@ inputs:
     description: "Type of the project, currently python and javascript are supported"
     required: false
     default: "python"
+  pullrequestKey:
+    required: false
+  pullrequestBranch:
+    required: false
+  pullrequestBase:
+    required: false
+  pullrequestRepository:
+    required: false
