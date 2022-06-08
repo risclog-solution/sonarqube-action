@@ -55,6 +55,6 @@ else
     -Dsonar.pullrequest.branch=${INPUT_PULLREQUESTBRANCH} \
     -Dsonar.pullrequest.base=${INPUT_PULLREQUESTBASE} \
     -Dsonar.pullrequest.github.repository=${INPUT_PULLREQUESTREPOSITORY} \
-    -Dsonar.scm.provider=git
+    -Dsonar.scm.provider=git \
     ${ARGS}
 fi
