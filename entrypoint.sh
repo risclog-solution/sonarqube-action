@@ -15,7 +15,7 @@ REPOSITORY_NAME=$(basename "${GITHUB_REPOSITORY}")
 [[ ! -z ${INPUT_PASSWORD} ]] && SONAR_PASSWORD="${INPUT_PASSWORD}" || SONAR_PASSWORD=""
 
 if [[ "${INPUT_PROJECTTYPE}" == "python" ]]; then
-    ARGS="-Dsonar.exclusions=**/*.js,**/*.css,**/*.scss,**/*.html,**/versions/** \
+    ARGS="-Dsonar.exclusions=**/*.js,**/*.css,**/*.scss,**/*.html,**/versions/**,**VUVM20** \
     -Dsonar.python.coverage.reportPaths="${GITHUB_WORKSPACE}/coverage.xml""
 elif [[ "${INPUT_PROJECTTYPE}" == "javascript" ]]; then
     ARGS="-Dsonar.exclusions=**/*.test.js,**/*index.js,src/polyfill.js,src/serviceWorker.js \
